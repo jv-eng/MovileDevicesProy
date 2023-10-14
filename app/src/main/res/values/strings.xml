@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovileAppsProyect</string>
+    <!--Login-->
+    <string name="nombre">Nombre</string>
+    <!--Listado estaciones-->
+
 </resources>
