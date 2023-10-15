@@ -20,7 +20,7 @@ import java.util.List;
 public class SpaceStationListDownloadThread implements Runnable {
 
     private Context ctx;
-    private final String baseUrl = "https://ll.thespacedevs.com/2.2.0/spacestation/?limit=10";
+    private final String baseUrl = "https://ll.thespacedevs.com/2.2.0/spacestation/";
     public SpaceStationListDownloadThread(Context contexto) {
         this.ctx = contexto;
     }
@@ -47,6 +47,8 @@ public class SpaceStationListDownloadThread implements Runnable {
             //get image
             Bitmap b = NetworkUtil.readImageHTTPGet(station.getImage());
             station.setbImage(b);
+            //check deorbited
+            if (station.getDeorbited() == null) station.setDeorbited("Still active");
         }
 
 

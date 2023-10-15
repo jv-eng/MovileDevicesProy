@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Menu-->
+    <string name="dayPicture">Image of the day</string>
+    <string name="spaceStations">Space stations</string>
+    <string name="spaceStationDistance">Distance to ISS</string>
+    <string name="dayPictNoInternet">Cannot show the image if there is no Internet connection</string>
+    <!--Login-->
+    <string name="name_app">Space Stations App</string>
+    <string name="mail">Email</string>
+    <string name="password">Password</string>
+    <string name="username">Email</string>
+    <string name="save_user">Remmember user</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <!--Listado estaciones-->
+</resources>

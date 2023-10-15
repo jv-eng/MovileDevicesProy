@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">MovileAppsProyect</string>
+    <!--Menu-->
+    <string name="dayPicture">Imagen del día</string>
+    <string name="spaceStations">Estaciones espaciales</string>
+    <string name="spaceStationDistance">Distancia ISS</string>
+    <string name="btn_logut">Logout</string>
+    <string name="dayPictNoInternet">No se puede mostrar la imagen al no haber acceso a Internet</string>
     <!--Login-->
-    <string name="nombre">Nombre</string>
+    <string name="name_app">Estaciones Espaciales App</string>
+    <string name="mail">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="username">Email</string>
+    <string name="save_user">Recordar usuario</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrar</string>
     <!--Listado estaciones-->
+
 
 </resources>
