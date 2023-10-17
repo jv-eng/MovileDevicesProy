@@ -17,4 +17,8 @@ public class SpaceStationRequestModel {
     public SpaceStationModel [] getResults() {
         return results;
     }
+
+    public String getNext() {
+        return next;
+    }
 }

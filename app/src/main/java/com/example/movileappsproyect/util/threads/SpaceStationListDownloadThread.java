@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SpaceStationListDownloadThread implements Runnable {
@@ -35,28 +36,35 @@ public class SpaceStationListDownloadThread implements Runnable {
             }
         });
 
+        List<SpaceStationModel> stations_res = new LinkedList<>();
+        SpaceStationRequestModel stations_req;
+        String url = baseUrl;
 
-        //task
-        String jsonStations = NetworkUtil.getHTTPText(baseUrl);
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        Gson gson = gsonBuilder.create();
-        SpaceStationRequestModel stations_req = gson.fromJson(jsonStations, SpaceStationRequestModel.class);
-        List<SpaceStationModel> stations = Arrays.asList(stations_req.getResults());
-        //edit objects
-        for (SpaceStationModel station: stations) {
-            //get image
-            Bitmap b = NetworkUtil.readImageHTTPGet(station.getImage());
-            station.setbImage(b);
-            //check deorbited
-            if (station.getDeorbited() == null) station.setDeorbited("Still active");
-        }
+        do {
+            //task
+            String jsonStations = NetworkUtil.getHTTPText(url);
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            Gson gson = gsonBuilder.create();
+            stations_req = gson.fromJson(jsonStations, SpaceStationRequestModel.class);
+            List<SpaceStationModel> stations = Arrays.asList(stations_req.getResults());
+            //edit objects
+            for (SpaceStationModel station: stations) {
+                //get image
+                Bitmap b = NetworkUtil.readImageHTTPGet(station.getImage());
+                station.setbImage(b);
+                //check deorbited
+                if (station.getDeorbited() == null) station.setDeorbited("Still in orbit");
+                stations_res.add(station);
+            }
+            if (stations_req.getNext() != null) url = stations_req.getNext();
+        } while (stations_req.getNext() != null);
 
 
         //show result
         ((Activity)ctx).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((SpaceStationListActivity)ctx).showDownloadResults(stations);
+                ((SpaceStationListActivity)ctx).showDownloadResults(stations_res);
                 ((SpaceStationListActivity)ctx).prepareUIAfterDownload();
             }
         });
