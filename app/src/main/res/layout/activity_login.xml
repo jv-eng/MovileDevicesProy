@@ -23,7 +23,7 @@
         tools:context=".activities.LoginActivity">
 
         <TextView
-            android:id="@+id/login_tv_welcome_title"
+            android:id="@+id/register_tv_welcome_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/name_app"
@@ -44,7 +44,7 @@
             android:hint="@string/password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginlayout_username"
+            app:layout_constraintTop_toBottomOf="@+id/login_layout_username"
             app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +56,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/loginlayout_username"
+            android:id="@+id/login_layout_username"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -64,7 +64,7 @@
             android:hint="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_tv_welcome_title"
+            app:layout_constraintTop_toBottomOf="@+id/register_tv_welcome_title"
 
             app:startIconDrawable="@drawable/ic_baseline_email_24">
 
@@ -72,13 +72,6 @@
                 android:id="@+id/login_et_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/lpb_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:visibility="invisible" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +88,7 @@
 
 
         <Button
-            android:id="@+id/login_brn_register"
+            android:id="@+id/login_btn_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

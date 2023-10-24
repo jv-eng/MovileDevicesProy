@@ -10,6 +10,8 @@ import android.widget.Space;
 import android.widget.Toast;
 
 import com.example.movileappsproyect.R;
+import com.example.movileappsproyect.util.PreferencesManage;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -48,6 +50,16 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MenuActivity.this, "No implementado", Toast.LENGTH_SHORT).show();
+                Intent i  = new Intent(MenuActivity.this, LocalizationActivity.class);
+                startActivity(i);
+            }
+        });
+
+        FloatingActionButton btn_logut = findViewById(R.id.menu_activity_logut);
+        btn_logut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PreferencesManage.removeUser(MenuActivity.this);
                 Intent i  = new Intent(MenuActivity.this, LoginActivity.class);
                 startActivity(i);
             }

@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 
 import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.util.NetworkUtil;
+import com.example.movileappsproyect.util.PreferencesManage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //comprobar token
-        if (false) {
+        if (!PreferencesManage.userExists(this)) {
             //comprobar
+            Intent i  = new Intent(this, LoginActivity.class);
+            startActivity(i);
         } else {
             //arrancar el menu de opciones
             Intent i  = new Intent(this, MenuActivity.class);

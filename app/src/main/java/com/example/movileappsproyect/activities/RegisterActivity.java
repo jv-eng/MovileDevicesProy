@@ -14,11 +14,12 @@ import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.UserModel;
 import com.example.movileappsproyect.util.PreferencesManage;
 import com.example.movileappsproyect.util.threads.LoginThread;
+import com.example.movileappsproyect.util.threads.RegisterThread;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private final Pattern emailPattern = Pattern.compile("^(.+)@(.+)$");
     private ProgressDialog progressDialog;
@@ -26,42 +27,38 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         //configurar botones
-        Button login_btn = findViewById(R.id.login_btn_login);
+        Button login_btn = findViewById(R.id.register_btn);
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView txt_user = findViewById(R.id.login_et_username);
-                TextView txt_pass = findViewById(R.id.login_et_password);
+                TextView txt_user = findViewById(R.id.register_email);
+                TextView txt_pass_1 = findViewById(R.id.register_pass_1);
+                TextView txt_pass_2 = findViewById(R.id.register_pass_2);
 
                 //comprobar formato del email
                 if(!emailPattern.matcher(txt_user.getText().toString()).matches()){
-                    Toast.makeText(LoginActivity.this, "Please insert a valid Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Please insert a valid Email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!txt_pass_1.getText().toString().equals(txt_pass_2.getText().toString())) {
+                    Toast.makeText(RegisterActivity.this, "Both passwords must be the same", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 //lanzar thread
-                UserModel user = new UserModel(txt_user.getText().toString(), txt_pass.getText().toString());
-                Thread th = new Thread(new LoginThread(LoginActivity.this, user));
+                UserModel user = new UserModel(txt_user.getText().toString(), txt_pass_1.getText().toString());
+                Thread th = new Thread(new RegisterThread(RegisterActivity.this, user));
                 th.start();
-            }
-        });
-
-        Button register_btn = findViewById(R.id.login_btn_register);
-        register_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
             }
         });
     }
 
     public void prepareUIForDownload() {
         progressDialog  = new ProgressDialog(this);
-        progressDialog.setMessage("Comprobando usuario");
+        progressDialog.setMessage("Creando usuario");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
@@ -71,14 +68,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkResults(String res) {
-        SwitchMaterial save_user_btn = findViewById(R.id.login_save_usr);
-
-        //si está activo, guardar
-        if (save_user_btn.isChecked()) {
-            PreferencesManage.storeUser(this, ((TextView)findViewById(R.id.login_et_username)).getText().toString());
-        }
-
-        Intent i = new Intent(LoginActivity.this, MenuActivity.class);
+        Intent i = new Intent(RegisterActivity.this, MenuActivity.class);
         startActivity(i);
     }
 }

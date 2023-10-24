@@ -44,9 +44,10 @@ public class SpaceStationListAdapter extends BaseAdapter {
         if (view == null) {
             view = LayoutInflater.from(ctx).inflate(R.layout.space_station_layout, null);
         }
-        ((TextView)view.findViewById(R.id.planet_item_name)).setText(datos.get(i).getNombre());
-        ((TextView)view.findViewById(R.id.planet_item_gravity)).setText(datos.get(i).getDeorbited());
-        ImageView tv = view.findViewById(R.id.planet_item_img);
+        ((TextView)view.findViewById(R.id.card_name)).setText(datos.get(i).getNombre());
+        ((TextView)view.findViewById(R.id.card_status)).setText(datos.get(i).getDeorbited());
+        ((TextView)view.findViewById(R.id.cardFounded)).setText(datos.get(i).getFounded());
+        ImageView tv = view.findViewById(R.id.card_img);
         tv.setImageBitmap(datos.get(i).getbImage());
         return view;
     }

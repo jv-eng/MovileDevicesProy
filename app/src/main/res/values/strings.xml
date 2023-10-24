@@ -14,7 +14,16 @@
     <string name="save_user">Recordar usuario</string>
     <string name="login">Iniciar Sesión</string>
     <string name="register">Registrar</string>
+    <!--Registro-->
+    <string name="register_txt">Bienvenido!</string>
+    <string name="register_mail">Email</string>
+    <string name="register_pass_1">Contraseña</string>
+    <string name="register_pass_2">Repita contraseña</string>
+    <string name="register_button">Registrarse</string>
     <!--Listado estaciones-->
-
+    <string name="cardImg">Imagen</string>
+    <string name="cardName">Nombre</string>
+    <string name="cardStatus">Estado</string>
+    <string name="cardFounded">Activa desde</string>
 
 </resources>
