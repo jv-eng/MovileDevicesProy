@@ -7,15 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.DayPictureModel;
-import com.example.movileappsproyect.model.SpaceStationModel;
-import com.example.movileappsproyect.util.SpaceStationListAdapter;
 import com.example.movileappsproyect.util.threads.DayPictureDownloadThread;
-
-import java.util.List;
 
 public class PictureDayActivity extends AppCompatActivity {
 
@@ -47,7 +43,10 @@ public class PictureDayActivity extends AppCompatActivity {
     }
 
     public void showDownloadResults(DayPictureModel results) {
-        ImageView tv = findViewById(R.id.imageView);
+        ImageView tv = findViewById(R.id.picture_day_img);
         tv.setImageBitmap(results.getbImage());
+        ((TextView)findViewById(R.id.pict_day_title)).setText(results.getTitle());
+        ((TextView)findViewById(R.id.pict_day_date)).setText(results.getDate());
+        ((TextView)findViewById(R.id.pict_day_explanation)).setText(results.getExplanation());
     }
 }

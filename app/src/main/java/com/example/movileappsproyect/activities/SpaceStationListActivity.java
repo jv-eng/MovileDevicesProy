@@ -28,13 +28,11 @@ public class SpaceStationListActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //comproabr internet para ver de donde descargamos
+                //pillar directamente de la base de datos, usamos un job para descargar
                 if (MainActivity.internetFlag) { //hay -> descargamos
                     Thread th = new Thread(new SpaceStationListDownloadThread(SpaceStationListActivity.this));
                     th.start();
-                } else { //accedemos a la base de datos
-
-                }
+                } else { }
             }
         });
     }
