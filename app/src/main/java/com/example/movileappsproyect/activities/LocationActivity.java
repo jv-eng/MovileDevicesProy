@@ -2,22 +2,34 @@ package com.example.movileappsproyect.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.movileappsproyect.R;
-import com.example.movileappsproyect.model.DayPictureModel;
 import com.example.movileappsproyect.model.localizationModels.LocationModel;
+import com.example.movileappsproyect.util.storage.FileManage;
 
-public class LocalizationActivity extends AppCompatActivity {
+import java.io.File;
+
+public class LocationActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog; //otra opcion es  ProgressBar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_localization);
+        setContentView(R.layout.activity_location);
+
+        String imgName = "/InternationalSpaceStation";
+        Bitmap map = FileManage.getImg(imgName, this);
+        File f = new File(imgName);
+        ImageView img = findViewById(R.id.location_img);
+        img.setImageBitmap(BitmapFactory.decodeFile(f.getAbsolutePath()));
     }
 
     public void prepareUIForDownload() {

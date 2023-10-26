@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 
 import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.util.NetworkUtil;
-import com.example.movileappsproyect.util.PreferencesManage;
+import com.example.movileappsproyect.util.storage.PreferencesManage;
 
 public class MainActivity extends AppCompatActivity {
 

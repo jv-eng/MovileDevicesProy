@@ -10,6 +10,7 @@ import com.example.movileappsproyect.activities.SpaceStationListActivity;
 import com.example.movileappsproyect.model.SpaceStationModel;
 import com.example.movileappsproyect.model.SpaceStationRequestModel;
 import com.example.movileappsproyect.util.NetworkUtil;
+import com.example.movileappsproyect.util.storage.FileManage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -49,11 +50,16 @@ public class SpaceStationListDownloadThread implements Runnable {
             List<SpaceStationModel> stations = Arrays.asList(stations_req.getResults());
             //edit objects
             for (SpaceStationModel station: stations) {
+                //modify name
+                station.setNombre(station.getNombre().replaceAll(" ",""));
                 //get image
                 Bitmap b = NetworkUtil.readImageHTTPGet(station.getImage());
                 station.setbImage(b);
+                //guardar imagen
+                FileManage.saveImg(station.getNombre(), ctx, b);
                 //check deorbited
                 if (station.getDeorbited() == null) station.setDeorbited("Still in orbit");
+                //store object
                 stations_res.add(station);
             }
             if (stations_req.getNext() != null) url = stations_req.getNext();

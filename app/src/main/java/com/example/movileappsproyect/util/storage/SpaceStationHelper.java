@@ -19,12 +19,12 @@ public class SpaceStationHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE station(" +
                 "_id INT, \n" +
                 "name TEXT, \n" +
-                "status TEXT, \n" +
                 "founded TEXT," +
                 "deorbited TEXT," +
                 "description TEXT," +
                 "orbit TEXT," +
-                "image TEXT" +
+                "image TEXT," +
+                "url TEXT" +
                 ")");
     }
 

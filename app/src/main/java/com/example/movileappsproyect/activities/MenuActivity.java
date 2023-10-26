@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Space;
 import android.widget.Toast;
 
 import com.example.movileappsproyect.R;
-import com.example.movileappsproyect.util.PreferencesManage;
+import com.example.movileappsproyect.util.storage.PreferencesManage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenuActivity extends AppCompatActivity {
@@ -50,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MenuActivity.this, "No implementado", Toast.LENGTH_SHORT).show();
-                Intent i  = new Intent(MenuActivity.this, LocalizationActivity.class);
+                Intent i  = new Intent(MenuActivity.this, LocationActivity.class);
                 startActivity(i);
             }
         });

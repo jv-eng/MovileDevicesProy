@@ -2,9 +2,8 @@ package com.example.movileappsproyect.util.threads;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 
-import com.example.movileappsproyect.activities.LocalizationActivity;
+import com.example.movileappsproyect.activities.LocationActivity;
 import com.example.movileappsproyect.model.localizationModels.DeviceLocationModel;
 import com.example.movileappsproyect.model.localizationModels.ISSLocationModel;
 import com.example.movileappsproyect.model.localizationModels.LocationModel;
@@ -24,7 +23,7 @@ public class LocalizationThread implements Runnable {
         ((Activity)ctx).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((LocalizationActivity)ctx).prepareUIForDownload();
+                ((LocationActivity)ctx).prepareUIForDownload();
             }
         });
 
@@ -53,8 +52,8 @@ public class LocalizationThread implements Runnable {
         ((Activity)ctx).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((LocalizationActivity)ctx).showDownloadResults(res);
-                ((LocalizationActivity)ctx).prepareUIAfterDownload();
+                ((LocationActivity)ctx).showDownloadResults(res);
+                ((LocationActivity)ctx).prepareUIAfterDownload();
             }
         });
     }

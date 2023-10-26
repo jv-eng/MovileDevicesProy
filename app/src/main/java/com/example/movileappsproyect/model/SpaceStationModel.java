@@ -29,6 +29,18 @@ public class SpaceStationModel {
                 "nombre='" + nombre + '}';
     }
 
+    public SpaceStationModel(int id, String nombre, String founded, String deorbited,
+                             String description, String orbit, String image, String url) {
+        this.id = id;
+        this.nombre = nombre;
+        this.founded = founded;
+        this.deorbited = deorbited;
+        this.description = description;
+        this.orbit = orbit;
+        this.image = image;
+        this.url = url;
+    }
+
     public int getId() {
         return id;
     }

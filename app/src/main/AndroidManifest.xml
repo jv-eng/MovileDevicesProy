@@ -20,7 +20,7 @@
             android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LocalizationActivity"
+            android:name=".activities.LocationActivity"
             android:exported="false" />
         <activity
             android:name=".activities.PictureDayActivity"

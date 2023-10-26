@@ -1,4 +1,4 @@
-package com.example.movileappsproyect.util;
+package com.example.movileappsproyect.util.storage;
 
 import static android.content.Context.MODE_PRIVATE;
 

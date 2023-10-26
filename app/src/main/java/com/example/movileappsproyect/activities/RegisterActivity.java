@@ -12,10 +12,7 @@ import android.widget.Toast;
 
 import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.UserModel;
-import com.example.movileappsproyect.util.PreferencesManage;
-import com.example.movileappsproyect.util.threads.LoginThread;
 import com.example.movileappsproyect.util.threads.RegisterThread;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.regex.Pattern;
 

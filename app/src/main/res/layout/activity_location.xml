@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LocationActivity">
+
+    <ImageView
+        android:id="@+id/location_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="485dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.991">
+
+        <LinearLayout
+            android:id="@+id/location_device"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/location_device_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_device_msg"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/location_device_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_device_country" />
+
+            <TextView
+                android:id="@+id/location_device_nearest_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_device_nearest_place" />
+
+            <TextView
+                android:id="@+id/location_device_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_device_url" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_iss"
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/location_iss_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_iss_msg"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/location_iss_lat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_iss_lat" />
+
+            <TextView
+                android:id="@+id/location_iss_long"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_iss_long" />
+
+            <TextView
+                android:id="@+id/location_iss_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_iss_time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_distance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/location_distance_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location_distance_msg"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
