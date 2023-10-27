@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">MovileAppsProyect</string>
     <!--Menu-->
     <string name="dayPicture">Image of the day</string>
     <string name="spaceStations">Space stations</string>
@@ -10,8 +11,37 @@
     <string name="mail">Email</string>
     <string name="password">Password</string>
     <string name="username">Email</string>
-    <string name="save_user">Remmember user</string>
+    <string name="save_user">Remember user</string>
     <string name="login">Login</string>
+    <string name="btn_logut">Logout</string>
     <string name="register">Register</string>
+    <!--Registro-->
+    <string name="register_txt">Welcome!</string>
+    <string name="register_mail">Email</string>
+    <string name="register_pass_1">Password</string>
+    <string name="register_pass_2">Repeat Password</string>
+    <string name="register_button">Register</string>
     <!--Listado estaciones-->
+    <string name="cardImg">Image</string>
+    <string name="cardName">Name</string>
+    <string name="cardStatus">State</string>
+    <string name="cardFounded">Active since</string>
+    <!--Imagen del dia-->
+    <string name="pict_date">Date</string>
+    <string name="pict_explanation">Description</string>
+    <string name="pict_title">Title</string>
+    <string name="pict_day_share_img">Share Image</string>
+    <string name="pict_day_share">Share</string>
+    <!--Localizacion-->
+    <string name="location_device_msg">Your position</string>
+    <string name="location_device_country">Country: </string>
+    <string name="location_device_nearest_place">Nearest city: </string>
+    <string name="location_device_url">Map: </string>
+    <string name="location_iss_msg">ISS Position</string>
+    <string name="location_iss_lat">Latitude: </string>
+    <string name="location_iss_long">Longitude: </string>
+    <string name="location_iss_time">TimeStamp: </string>
+    <string name="location_distance_msg">Distance</string>
+    <string name="location_distance_res">Value</string>
+
 </resources>

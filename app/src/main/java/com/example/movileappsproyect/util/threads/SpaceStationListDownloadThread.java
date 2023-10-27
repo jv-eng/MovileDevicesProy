@@ -56,7 +56,7 @@ public class SpaceStationListDownloadThread implements Runnable {
                 Bitmap b = NetworkUtil.readImageHTTPGet(station.getImage());
                 station.setbImage(b);
                 //guardar imagen
-                FileManage.saveImg(station.getNombre(), ctx, b);
+                FileManage.saveImg(station.getNombre() + ".jpeg", ctx, b);
                 //check deorbited
                 if (station.getDeorbited() == null) station.setDeorbited("Still in orbit");
                 //store object

@@ -7,16 +7,16 @@
     tools:context=".activities.SpaceStationListActivity">
 
     <Button
-        android:id="@+id/buttonPict"
-        android:layout_width="wrap_content"
+        android:id="@+id/pict_day_share"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/pict_day_share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/picture_day_img"
@@ -38,7 +38,7 @@
         android:dividerHeight="1dp"
         android:text="@string/pict_title"
         android:textAlignment="center"
-        android:textSize="34sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,10 +72,10 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/pict_day_share_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/pict_day_share_img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"

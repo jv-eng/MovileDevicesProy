@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.example.movileappsproyect.activities.SpaceStationListActivity;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,18 +30,13 @@ public class FileManage {
     }
 
     public static Bitmap getImg(String fileName, Context ctx) {
-        File file = new File(ctx.getFilesDir(), fileName);
+        File file = new File(fileName);
         Bitmap myBitmap = null;
-        try (FileInputStream inputStream = ctx.openFileInput(fileName)) {
-            if(file.exists()){
-                myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            } else {
-                Log.e("FileManage.getImg","No existe imagen");
-            }
-        } catch (FileNotFoundException e) {
-            Log.e("FileNotFound","no se ha encontrado fichero");
-        } catch (IOException e) {
-            Log.e("IOException","error al guardar fichero");
+
+        if(file.exists()){Log.e("aqui",fileName);
+            myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        } else {
+            Log.e("FileManage.getImg","No existe imagen");
         }
         return myBitmap;
     }

@@ -4,7 +4,7 @@ package com.example.movileappsproyect.model.localizationModels;
 public class LocationModel {
     private DeviceLocationModel device;
     private ISSLocationModel iss;
-    private int distanceToISS;
+    private double distanceToISS;
 
     public DeviceLocationModel getDevice() {
         return device;
@@ -22,11 +22,11 @@ public class LocationModel {
         this.iss = iss;
     }
 
-    public int getDistanceToISS() {
+    public double getDistanceToISS() {
         return distanceToISS;
     }
 
-    public void setDistanceToISS(int distanceToISS) {
+    public void setDistanceToISS(double distanceToISS) {
         this.distanceToISS = distanceToISS;
     }
 }

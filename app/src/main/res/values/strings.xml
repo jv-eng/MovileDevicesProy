@@ -29,15 +29,18 @@
     <string name="pict_date">Fecha</string>
     <string name="pict_explanation">Descripción</string>
     <string name="pict_title">Título</string>
+    <string name="pict_day_share_img">Compartir imagen</string>
+    <string name="pict_day_share">Compartir</string>
     <!--Localizacion-->
     <string name="location_device_msg">Tu posición</string>
-    <string name="location_device_country">País</string>
-    <string name="location_device_nearest_place">Ciudad cercana</string>
-    <string name="location_device_url">Mapa</string>
+    <string name="location_device_country">País: </string>
+    <string name="location_device_nearest_place">Ciudad cercana: </string>
+    <string name="location_device_url">Mapa: </string>
     <string name="location_iss_msg">Posición de la ISS</string>
-    <string name="location_iss_lat">Latitud</string>
-    <string name="location_iss_long">Longitud</string>
-    <string name="location_iss_time">TimeStamp</string>
+    <string name="location_iss_lat">Latitud: </string>
+    <string name="location_iss_long">Longitud: </string>
+    <string name="location_iss_time">TimeStamp: </string>
     <string name="location_distance_msg">Distancia</string>
+    <string name="location_distance_res">Valor</string>
 
 </resources>

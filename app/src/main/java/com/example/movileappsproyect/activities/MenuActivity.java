@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.movileappsproyect.R;
+import com.example.movileappsproyect.util.NetworkUtil;
 import com.example.movileappsproyect.util.storage.PreferencesManage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -37,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         btnDayPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MainActivity.internetFlag) {
+                if (NetworkUtil.isNetworkAvailable(MenuActivity.this)) {
                     Intent i  = new Intent(MenuActivity.this, PictureDayActivity.class);
                     startActivity(i);
                 } else { Toast.makeText(MenuActivity.this, R.string.dayPictNoInternet, Toast.LENGTH_SHORT).show(); }
@@ -48,7 +49,6 @@ public class MenuActivity extends AppCompatActivity {
         btnISSDistance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MenuActivity.this, "No implementado", Toast.LENGTH_SHORT).show();
                 Intent i  = new Intent(MenuActivity.this, LocationActivity.class);
                 startActivity(i);
             }

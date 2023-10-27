@@ -2,17 +2,19 @@ package com.example.movileappsproyect.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.localizationModels.LocationModel;
 import com.example.movileappsproyect.util.storage.FileManage;
+import com.example.movileappsproyect.util.threads.LocationThread;
 
 import java.io.File;
 
@@ -25,11 +27,9 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        String imgName = "/InternationalSpaceStation";
-        Bitmap map = FileManage.getImg(imgName, this);
-        File f = new File(imgName);
-        ImageView img = findViewById(R.id.location_img);
-        img.setImageBitmap(BitmapFactory.decodeFile(f.getAbsolutePath()));
+        //descarga de información
+        Thread th = new Thread(new LocationThread(this));
+        th.start();
     }
 
     public void prepareUIForDownload() {
@@ -44,23 +44,19 @@ public class LocationActivity extends AppCompatActivity {
     }
 
     public void showDownloadResults(LocationModel results) {
-        //ImageView tv = findViewById(R.id.imageView);
-        //tv.setImageBitmap(results.getbImage());
+        ((TextView)findViewById(R.id.location_device_country)).append("   "+ results.getDevice().getCountry());
+        ((TextView)findViewById(R.id.location_device_nearest_place)).append("   "+ results.getDevice().getPlace());
+        ((TextView)findViewById(R.id.location_device_url)).append("   "+ results.getDevice().getMap_url());
+        ((TextView)findViewById(R.id.location_iss_lat)).append("   "+ results.getIss().getLatitude());
+        ((TextView)findViewById(R.id.location_iss_long)).append("   "+ results.getIss().getLongitude());
+        ((TextView)findViewById(R.id.location_iss_time)).append("   "+ results.getIss().getTimestamp());
+        ((TextView)findViewById(R.id.location_distance_res)).setText(String.valueOf(results.getDistanceToISS()));
     }
 
-    //calcualr distancia en kilometros
-    private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-        final int R = 6371; // Radio de la Tierra en kilómetros
-
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLon = Math.toRadians(lon2 - lon1);
-
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return R * c; // Distancia en kilómetros
+    public void setImg(Bitmap img) {
+        ImageView tv = findViewById(R.id.location_img);
+        tv.setImageBitmap(img);
     }
+
+
 }

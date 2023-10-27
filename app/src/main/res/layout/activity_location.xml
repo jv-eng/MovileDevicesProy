@@ -19,8 +19,8 @@
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="485dp"
+        android:layout_width="match_parent"
+        android:layout_height="484dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,8 @@
                 android:id="@+id/location_device_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/location_device_url" />
+                android:text="@string/location_device_url"
+                android:autoLink="web" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,10 +111,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/location_distance_res"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/location_distance_res" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
