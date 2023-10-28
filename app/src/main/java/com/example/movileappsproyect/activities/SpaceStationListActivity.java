@@ -29,10 +29,10 @@ public class SpaceStationListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //pillar directamente de la base de datos, usamos un job para descargar
-                if (MainActivity.internetFlag) { //hay -> descargamos
+                //if (MainActivity.internetFlag) { //hay -> descargamos
                     Thread th = new Thread(new SpaceStationListDownloadThread(SpaceStationListActivity.this));
                     th.start();
-                } else { }
+                //} else { }
             }
         });
     }

@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,8 +15,11 @@ import android.widget.TextView;
 
 import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.DayPictureModel;
+import com.example.movileappsproyect.util.storage.FileManage;
 import com.example.movileappsproyect.util.threads.DayPictureDownloadThread;
 import com.example.movileappsproyect.util.threads.LoginThread;
+
+import java.io.File;
 
 public class PictureDayActivity extends AppCompatActivity {
 
@@ -36,9 +40,15 @@ public class PictureDayActivity extends AppCompatActivity {
         btn_share_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FileManage.saveImg(results.getTitle(), PictureDayActivity.this, results.getbImage());
+
+                String bitmapPath = MediaStore.Images.Media.insertImage(view.getContext().getContentResolver(),
+                        results.getbImage(), "Image", "Image to share");
+                Uri bitmapUri = Uri.parse(bitmapPath);
+
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_STREAM, results.getbImage());
+                intent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 PictureDayActivity.this.startActivity(Intent.createChooser(intent, "Compartir imagen"));
             }

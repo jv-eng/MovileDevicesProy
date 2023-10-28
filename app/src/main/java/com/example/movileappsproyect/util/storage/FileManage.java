@@ -20,7 +20,8 @@ public class FileManage {
         File file = new File(ctx.getFilesDir(), fileName);
         try (FileOutputStream fos = ctx.openFileOutput(
                 fileName, Context.MODE_PRIVATE)) {
-            fos.write(img.getRowBytes());
+            img.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
             Log.i("MainActivity","fichero guardado: " + fileName);
         } catch (FileNotFoundException e) {
             Log.e("FileNotFound","no se ha encontrado fichero");

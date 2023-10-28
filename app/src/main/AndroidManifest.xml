@@ -4,7 +4,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -17,15 +20,27 @@
         android:theme="@style/Theme.MovileAppsProyect"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LocationActivity"
-            android:exported="false" />
+            android:exported="false">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.PICK"/>
+                <category
+                    android:name="android.intent.category.DEFAULT"/>
+                <category
+                    android:name="android.intent.category.OPENABLE"/>
+                <data android:mimeType="text/plain"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.PictureDayActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activities.SpaceStationListActivity"
             android:exported="false" />
