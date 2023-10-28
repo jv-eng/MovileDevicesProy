@@ -5,25 +5,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.movileappsproyect.R;
+import com.example.movileappsproyect.jobs.SpaceStationDownloadService;
 import com.example.movileappsproyect.util.NetworkUtil;
 import com.example.movileappsproyect.util.storage.PreferencesManage;
+import com.example.movileappsproyect.util.storage.SpaceStationHelper;
+import com.example.movileappsproyect.util.threads.LoginThread;
+import com.example.movileappsproyect.util.threads.SpaceStationListDownloadThread;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final static int NOTIFICATION_ID = 608, SPACE_STATION_DOWNLOAD_ID = 609;
+
     private final static String TAG = MainActivity.class.getName();
     private static boolean geoPermision = false;
+    //add flag primera insercion
+    public static boolean firstJob = true;
 
     public static boolean isGeoPermision() {
         return geoPermision;
@@ -34,20 +48,70 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //comprobar si funcionan los jobs
-        //si no, arrancarlas
+        checkDB();
+
+        //comprobar job de descarga de estaciones
+        //arrancar thread
+        if(!isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)) startBatchUpdateJob();
+
+        if(!isJobServiceRunning(NOTIFICATION_ID)) {
+            createNotificationChannel();
+            startNotificationJob();
+        }
 
         //comprobar permisos de geolocalizacion
         askForPermissionsGrant();
 
         //comprobar si hay conexion a internet
-        if (NetworkUtil.isNetworkAvailable(this)) {
-            Log.i("Internet Connection","Tenemos internet");
-        } else {
+        if (!NetworkUtil.isNetworkAvailable(this)) {
             Log.e("Internet Connection","No hay internet");
             Toast.makeText(this, "Por favor, revise su conexión",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void checkDB() {
+        String query = "SELECT * FROM station;";
+        SpaceStationHelper helper = new SpaceStationHelper(this);
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        Cursor c = sqLiteDatabase.rawQuery(query, new String[]{});
+        if (c.getCount() > 0) firstJob = false;
+        c.close();
+    }
+
+    private void startNotificationJob(){
+        /*ComponentName comName = new ComponentName(this, NotificationService.class);
+        JobInfo info = new JobInfo.Builder(609, comName)
+                .setPersisted(true)
+                .setPeriodic(15 * 60 * 1000)
+                .build();
+
+        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        scheduler.schedule(info);*/
+    }
+
+    private void startBatchUpdateJob(){
+        ComponentName comName = new ComponentName(this, SpaceStationDownloadService.class);
+        JobInfo info = new JobInfo.Builder(SPACE_STATION_DOWNLOAD_ID, comName)
+                .setPersisted(true)
+                .setPeriodic(15 * 60 * 1000)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .build();
+
+        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        scheduler.schedule(info);
+    }
+
+    private void createNotificationChannel(){
+        /*CharSequence name = "notificationChannel";
+        String description = "Main notification channel";
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("notification", name, NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }*/
     }
 
     @Override
@@ -67,13 +131,11 @@ public class MainActivity extends AppCompatActivity {
 
     //comprobar jobs activos en el sistema
     private boolean isJobServiceRunning(int id) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            JobScheduler scheduler = MainActivity.this.getSystemService(JobScheduler.class);
-            List<JobInfo> actJobs = scheduler.getAllPendingJobs();
-            for (JobInfo job: actJobs) {
-                if(job.getId() == id)
-                    return true;
-            }
+        JobScheduler scheduler = MainActivity.this.getSystemService(JobScheduler.class);
+        List<JobInfo> actJobs = scheduler.getAllPendingJobs();
+        for (JobInfo job: actJobs) {
+            if(job.getId() == id)
+                return true;
         }
         return false;
     }

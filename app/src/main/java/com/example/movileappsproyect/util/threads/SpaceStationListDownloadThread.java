@@ -11,6 +11,8 @@ import com.example.movileappsproyect.model.SpaceStationModel;
 import com.example.movileappsproyect.model.SpaceStationRequestModel;
 import com.example.movileappsproyect.util.NetworkUtil;
 import com.example.movileappsproyect.util.storage.FileManage;
+import com.example.movileappsproyect.util.storage.SpaceStationDB;
+import com.example.movileappsproyect.util.storage.SpaceStationHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -29,14 +31,6 @@ public class SpaceStationListDownloadThread implements Runnable {
 
     @Override
     public void run() {
-        //prepare interface
-        ((Activity)ctx).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((SpaceStationListActivity)ctx).prepareUIForDownload();
-            }
-        });
-
         List<SpaceStationModel> stations_res = new LinkedList<>();
         SpaceStationRequestModel stations_req;
         String url = baseUrl;
@@ -66,13 +60,9 @@ public class SpaceStationListDownloadThread implements Runnable {
         } while (stations_req.getNext() != null);
 
 
-        //show result
-        ((Activity)ctx).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((SpaceStationListActivity)ctx).showDownloadResults(stations_res);
-                ((SpaceStationListActivity)ctx).prepareUIAfterDownload();
-            }
-        });
+        //store data
+        SpaceStationHelper helper = new SpaceStationHelper(ctx);
+        SpaceStationDB db = new SpaceStationDB(helper);
+        db.save(stations_res);
     }
 }

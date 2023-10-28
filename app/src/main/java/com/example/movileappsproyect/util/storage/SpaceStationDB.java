@@ -3,6 +3,7 @@ package com.example.movileappsproyect.util.storage;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.movileappsproyect.activities.MainActivity;
 import com.example.movileappsproyect.model.SpaceStationModel;
 
 import java.util.LinkedList;
@@ -50,9 +51,21 @@ public class SpaceStationDB {
                 station.getUrl()
         });
     }
+
     public void save(List<SpaceStationModel> stations) {
+        boolean flag = false;
         for (SpaceStationModel station: stations) {
-            save(station);
+            if (MainActivity.firstJob) {
+                save(station);
+                flag = true;
+            } else {
+                String query = "SELECT * FROM station WHERE name='?';";
+                SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+                Cursor c = sqLiteDatabase.rawQuery(query, new String[]{station.getNombre()});
+                if (c.getCount() == 0) save(station);
+                c.close();
+            }
         }
+        if (flag) MainActivity.firstJob = false;
     }
 }
