@@ -32,8 +32,8 @@ public class SpaceStationListDownloadThread implements Runnable {
         List<SpaceStationModel> stations_res = new LinkedList<>();
         SpaceStationRequestModel stations_req;
         String url = baseUrl;
-Log.i("ver si existen estaciones",String.valueOf(!PreferencesManage.stationsExists(ctx)));
-        if (!PreferencesManage.stationsExists(ctx) || MainActivity.firstJob) {
+
+        if (MainActivity.firstJob) {
             Log.i("descargando estaciones","descargando");
             do {
                 //task
