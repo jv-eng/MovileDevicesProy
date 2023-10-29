@@ -26,6 +26,15 @@
     <string name="cardName">Name</string>
     <string name="cardStatus">State</string>
     <string name="cardFounded">Active since</string>
+    <!--Estación-->
+    <string name="station_img">Image</string>
+    <string name="station_btn_share">Share</string>
+    <string name="station_btn_share_img">Share Image</string>
+    <string name="station_name">Name</string>
+    <string name="station_founded">Founded</string>
+    <string name="station_deorbited">Deorbited</string>
+    <string name="station_orbit">Orbit</string>
+    <string name="station_description">Description</string>
     <!--Imagen del dia-->
     <string name="pict_date">Date</string>
     <string name="pict_explanation">Description</string>
@@ -34,13 +43,13 @@
     <string name="pict_day_share">Share</string>
     <!--Localizacion-->
     <string name="location_device_msg">Your position</string>
-    <string name="location_device_country">Country: </string>
-    <string name="location_device_nearest_place">Nearest city: </string>
-    <string name="location_device_url">Map: </string>
+    <string name="location_device_country">Country:</string>
+    <string name="location_device_nearest_place">Nearest city:</string>
+    <string name="location_device_url">Map:</string>
     <string name="location_iss_msg">ISS Position</string>
-    <string name="location_iss_lat">Latitude: </string>
-    <string name="location_iss_long">Longitude: </string>
-    <string name="location_iss_time">TimeStamp: </string>
+    <string name="location_iss_lat">Latitude:</string>
+    <string name="location_iss_long">Longitude:</string>
+    <string name="location_iss_time">TimeStamp:</string>
     <string name="location_distance_msg">Distance</string>
     <string name="location_distance_res">Value</string>
 

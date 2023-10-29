@@ -22,12 +22,7 @@ public class SpaceStationModel {
     @SerializedName("image_url")
     private String image;
     private Bitmap bImage;
-
-    @Override
-    public String toString() {
-        return "SpaceStationModel{" +
-                "nombre='" + nombre + '}';
-    }
+    private String storeUrl;
 
     public SpaceStationModel(int id, String nombre, String founded, String deorbited,
                              String description, String orbit, String image, String url) {
@@ -39,6 +34,30 @@ public class SpaceStationModel {
         this.orbit = orbit;
         this.image = image;
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "SpaceStationModel{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", url='" + url + '\'' +
+                ", founded='" + founded + '\'' +
+                ", deorbited='" + deorbited + '\'' +
+                ", description='" + description + '\'' +
+                ", orbit='" + orbit + '\'' +
+                ", image='" + image + '\'' +
+                ", bImage=" + bImage +
+                ", storeUrl='" + storeUrl + '\'' +
+                '}';
+    }
+
+    public String getStoreUrl() {
+        return storeUrl;
+    }
+
+    public void setStoreUrl(String storeUrl) {
+        this.storeUrl = storeUrl;
     }
 
     public int getId() {

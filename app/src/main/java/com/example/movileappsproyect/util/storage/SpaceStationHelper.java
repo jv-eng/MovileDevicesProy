@@ -24,7 +24,8 @@ public class SpaceStationHelper extends SQLiteOpenHelper {
                 "description TEXT," +
                 "orbit TEXT," +
                 "image TEXT," +
-                "url TEXT" +
+                "url TEXT," +
+                "store_url TEXT" +
                 ")");
     }
 

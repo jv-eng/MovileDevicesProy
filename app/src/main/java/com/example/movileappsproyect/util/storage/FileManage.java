@@ -16,7 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FileManage {
-    public static void saveImg(String fileName, Context ctx, Bitmap img) {
+    public static String saveImg(String fileName, Context ctx, Bitmap img) {
         File file = new File(ctx.getFilesDir(), fileName);
         try (FileOutputStream fos = ctx.openFileOutput(
                 fileName, Context.MODE_PRIVATE)) {
@@ -28,6 +28,7 @@ public class FileManage {
         } catch (IOException e) {
             Log.e("IOException","error al guardar fichero");
         }
+        return file.getAbsolutePath();
     }
 
     public static Bitmap getImg(String fileName, Context ctx) {

@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         //arrancar thread
         if(!isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)) startBatchUpdateJob();
 
+        Log.i("inicio app",String.valueOf(isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)));
+
         if(!isJobServiceRunning(NOTIFICATION_ID)) {
             createNotificationChannel();
             startNotificationJob();
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkDB() {
         String query = "SELECT * FROM station;";
         SpaceStationHelper helper = new SpaceStationHelper(this);
-        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = helper.getReadableDatabase();
         Cursor c = sqLiteDatabase.rawQuery(query, new String[]{});
         if (c.getCount() > 0) firstJob = false;
         c.close();

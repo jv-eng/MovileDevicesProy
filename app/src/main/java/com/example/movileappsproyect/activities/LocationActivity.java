@@ -60,14 +60,6 @@ public class LocationActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 if (location != null && location.getLatitude() != 0.0 && location.getLongitude() != 0.0) {
-                    /*if (location.getLatitude() > 90) LocationActivity.device_lat = 90;
-                    else if (location.getLatitude() < -90) LocationActivity.device_lat = -90;
-                    else LocationActivity.device_lat = location.getLatitude();*/
-                    double tmp;
-                    if (location.getLongitude() > 90) tmp = location.getLongitude() - 90;
-                    else if (location.getLongitude() < -90) tmp = location.getLongitude() + 90;
-                    else tmp = location.getLongitude();
-
                     LocationActivity.setValues(location.getLatitude(), location.getLongitude());
 
                     Log.e("corrdenadas", "conseguimos coordenadas");

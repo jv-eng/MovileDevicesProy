@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.959" />
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/space_station_list"
         android:layout_width="409dp"
         android:layout_height="653dp"
         android:layout_marginBottom="1dp"

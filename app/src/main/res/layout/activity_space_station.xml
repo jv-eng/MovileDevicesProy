@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SpaceStationActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_share"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/space_station_share"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/station_btn_share" />
+
+        <Button
+            android:id="@+id/space_station_share_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/station_btn_share_img"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="454dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_share"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/station_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_name" />
+
+        <TextView
+            android:id="@+id/station_founded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_founded" />
+
+        <TextView
+            android:id="@+id/station_deorbited"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_deorbited" />
+
+        <TextView
+            android:id="@+id/station_orbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/station_orbit" />
+
+        <ScrollView
+            android:id="@+id/station_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/station_scroll_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/station_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/station_description" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/station_img"
+        android:layout_width="214dp"
+        android:layout_height="214dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_share"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

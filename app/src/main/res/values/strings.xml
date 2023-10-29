@@ -25,6 +25,15 @@
     <string name="cardName">Nombre</string>
     <string name="cardStatus">Estado</string>
     <string name="cardFounded">Activa desde</string>
+    <!--Estación-->
+    <string name="station_img">Imagen</string>
+    <string name="station_btn_share">Compartir</string>
+    <string name="station_btn_share_img">Compartir imagen</string>
+    <string name="station_name">Nombre</string>
+    <string name="station_founded">Fundada</string>
+    <string name="station_deorbited">Sacada de órbita</string>
+    <string name="station_orbit">Órbita</string>
+    <string name="station_description">Descripción</string>
     <!--Imagen del dia-->
     <string name="pict_date">Fecha</string>
     <string name="pict_explanation">Descripción</string>
