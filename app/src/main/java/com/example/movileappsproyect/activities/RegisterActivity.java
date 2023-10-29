@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void checkResults(String res) {
-        Intent i = new Intent(RegisterActivity.this, MenuActivity.class);
+        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);
     }
 }

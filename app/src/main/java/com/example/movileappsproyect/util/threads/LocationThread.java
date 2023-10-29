@@ -1,14 +1,8 @@
 package com.example.movileappsproyect.util.threads;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Location;
-import android.util.Log;
-
-import androidx.core.app.ActivityCompat;
 
 import com.example.movileappsproyect.activities.LocationActivity;
 import com.example.movileappsproyect.model.localizationModels.DeviceLocationModel;
@@ -17,10 +11,6 @@ import com.example.movileappsproyect.model.localizationModels.LocationModel;
 import com.example.movileappsproyect.util.NetworkUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-
-import java.util.Arrays;
-import java.util.List;
 
 public class LocationThread implements Runnable {
     private final String LOCALIZATION_URL = "https://api.what3words.com/v3/convert-to-3wa?key=BLNWEEO3&coordinates=";//40.4165%2C-3.70256&language=es&format=json";

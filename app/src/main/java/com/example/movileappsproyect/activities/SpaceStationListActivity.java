@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,7 +15,6 @@ import com.example.movileappsproyect.util.storage.FileManage;
 import com.example.movileappsproyect.util.storage.SpaceStationDB;
 import com.example.movileappsproyect.util.storage.SpaceStationHelper;
 
-import java.io.File;
 import java.util.List;
 
 public class SpaceStationListActivity extends AppCompatActivity {

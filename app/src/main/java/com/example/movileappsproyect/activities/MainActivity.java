@@ -15,18 +15,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.movileappsproyect.R;
+import com.example.movileappsproyect.jobs.NotificationService;
 import com.example.movileappsproyect.jobs.SpaceStationDownloadService;
 import com.example.movileappsproyect.util.NetworkUtil;
 import com.example.movileappsproyect.util.storage.PreferencesManage;
 import com.example.movileappsproyect.util.storage.SpaceStationHelper;
-import com.example.movileappsproyect.util.threads.LoginThread;
-import com.example.movileappsproyect.util.threads.SpaceStationListDownloadThread;
 
 import java.util.List;
 
@@ -51,13 +49,14 @@ public class MainActivity extends AppCompatActivity {
         checkDB();
 
         //comprobar job de descarga de estaciones
-        //arrancar thread
         if(!isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)) startBatchUpdateJob();
+        else Log.e("ERRRRORR","no se descargan");
 
+        //comprobar notificaciones
         if(!isJobServiceRunning(NOTIFICATION_ID)) {
             createNotificationChannel();
             startNotificationJob();
-        }
+        } else Log.e("ERRRRORR","no hay notificaciones");
 
         //comprobar permisos de geolocalizacion
         askForPermissionsGrant();
@@ -80,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startNotificationJob(){
-        /*ComponentName comName = new ComponentName(this, NotificationService.class);
-        JobInfo info = new JobInfo.Builder(609, comName)
+        ComponentName comName = new ComponentName(this, NotificationService.class);
+        JobInfo info = new JobInfo.Builder(NOTIFICATION_ID, comName)
                 .setPersisted(true)
                 .setPeriodic(15 * 60 * 1000)
                 .build();
 
         JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        scheduler.schedule(info);*/
+        scheduler.schedule(info);
     }
 
     private void startBatchUpdateJob(){
@@ -103,15 +102,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNotificationChannel(){
-        /*CharSequence name = "notificationChannel";
+        CharSequence name = "notificationChannel";
         String description = "Main notification channel";
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("notification", name, NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription(description);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }*/
+        NotificationChannel channel = new NotificationChannel("notification", name, NotificationManager.IMPORTANCE_HIGH);
+        channel.setDescription(description);
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 
     @Override
@@ -176,8 +173,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // Permission has already been granted
             this.geoPermision = true;
-            Toast.makeText(this, "Permisos obtenidos", Toast.LENGTH_SHORT).show();
-            Log.i(this.getLocalClassName(), "permisos ya obtenidos");
+            //Toast.makeText(this, "Permisos obtenidos", Toast.LENGTH_SHORT).show();
+            //Log.i(this.getLocalClassName(), "permisos ya obtenidos");
         }
 
     }
@@ -190,10 +187,12 @@ public class MainActivity extends AppCompatActivity {
             case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "callback de permisos, concedido", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "callback de permisos, concedido", Toast.LENGTH_SHORT).show();
+                    Log.i("callback","callback de permisos, concedido");
                     this.geoPermision = true;
                 } else {
-                    Toast.makeText(this, "callback de permisos, no concedidos", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "callback de permisos, no concedidos", Toast.LENGTH_SHORT).show();
+                    Log.i("callback","callback de permisos, no concedidos");
                 }
                 return;
         }

@@ -2,8 +2,6 @@ package com.example.movileappsproyect.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class SpaceStationRequestModel {
     @SerializedName("count")
     private int id;

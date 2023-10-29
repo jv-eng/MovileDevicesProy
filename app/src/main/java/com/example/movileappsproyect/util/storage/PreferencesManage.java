@@ -5,8 +5,6 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.movileappsproyect.model.UserModel;
-
 public class PreferencesManage {
 
     private final static String PREFERENCES_FILE_NAME = "prefs", PREFERENCE_ATTR_1_NAME = "user_name",

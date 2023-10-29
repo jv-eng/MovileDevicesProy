@@ -1,7 +1,6 @@
 package com.example.movileappsproyect.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,9 +16,6 @@ import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.DayPictureModel;
 import com.example.movileappsproyect.util.storage.FileManage;
 import com.example.movileappsproyect.util.threads.DayPictureDownloadThread;
-import com.example.movileappsproyect.util.threads.LoginThread;
-
-import java.io.File;
 
 public class PictureDayActivity extends AppCompatActivity {
 

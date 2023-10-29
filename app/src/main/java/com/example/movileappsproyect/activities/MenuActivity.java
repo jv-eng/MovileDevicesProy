@@ -112,7 +112,7 @@ public class MenuActivity extends AppCompatActivity {
         } else {
             // Permission has already been granted
 
-            Toast.makeText(this, "Permisos obtenidos", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Permisos obtenidos", Toast.LENGTH_SHORT).show();
             Log.i(this.getLocalClassName(), "permisos ya obtenidos");
         }
 
@@ -126,10 +126,11 @@ public class MenuActivity extends AppCompatActivity {
             case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "callback de permisos, concedido", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(this, "callback de permisos, concedido", Toast.LENGTH_SHORT).show();
+                    Log.i("callback","callback de permisos, concedidos");
                 } else {
-                    Toast.makeText(this, "callback de permisos, no concedidos", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "callback de permisos, no concedidos", Toast.LENGTH_SHORT).show();
+                    Log.i("callback","callback de permisos, no concedidos");
                 }
                 return;
         }

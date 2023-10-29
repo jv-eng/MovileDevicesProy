@@ -2,7 +2,6 @@ package com.example.movileappsproyect.util.storage;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.movileappsproyect.activities.MainActivity;
 import com.example.movileappsproyect.model.SpaceStationModel;

@@ -2,16 +2,12 @@ package com.example.movileappsproyect.util.threads;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import com.example.movileappsproyect.activities.LoginActivity;
-import com.example.movileappsproyect.activities.RegisterActivity;
 import com.example.movileappsproyect.model.UserModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONStringer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +24,10 @@ public class LoginThread implements Runnable {
     private Context ctx;
     private UserModel userModel;
 
-    public LoginThread(Context ctx, UserModel user) {this.ctx = ctx; this.userModel = user;}
+    public LoginThread(Context ctx, UserModel user) {
+        this.ctx = ctx;
+        this.userModel = user;
+    }
 
     @Override
     public void run() {
@@ -49,8 +48,7 @@ public class LoginThread implements Runnable {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");
-            //String jsonData = "{\"usuario\": \"" + userModel.getEmail() + "\", \"contraseña\": \""
-            //        + userModel.getPassword() + "\"}";
+
             Gson gson = new Gson();
             String jsonData = gson.toJson(userModel);
 
