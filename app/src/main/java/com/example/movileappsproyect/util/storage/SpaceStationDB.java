@@ -47,7 +47,6 @@ public class SpaceStationDB {
         String query = "SELECT _id, name, founded, deorbited, description, orbit, " +
                 "image, url, store_url FROM station WHERE name=?;";
 
-        Log.i("query",name);
         SQLiteDatabase sqLiteDatabase = helper.getReadableDatabase();
         Cursor c = sqLiteDatabase.rawQuery(query, new String[]{name});
         while (c.moveToNext()) {

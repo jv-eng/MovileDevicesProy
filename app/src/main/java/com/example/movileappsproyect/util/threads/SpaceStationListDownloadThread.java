@@ -34,7 +34,7 @@ public class SpaceStationListDownloadThread implements Runnable {
         String url = baseUrl;
 
         if (MainActivity.firstJob) {
-            Log.i("descargando estaciones","descargando");
+            Log.i(SpaceStationListDownloadThread.class.getName(),"descargando estaciones");
             do {
                 //task
                 String jsonStations = NetworkUtil.getHTTPText(url);

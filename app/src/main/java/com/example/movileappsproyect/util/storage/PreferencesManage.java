@@ -15,7 +15,6 @@ public class PreferencesManage {
     public static boolean userExists(Context ctx) {
         SharedPreferences pref = ctx.getSharedPreferences(PREFERENCES_FILE_NAME, MODE_PRIVATE);
         String username = pref.getString(PREFERENCE_ATTR_1_NAME, "");
-
         //comprobar si hay algo
         return (!username.equals(""));
     }

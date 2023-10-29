@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.movileappsproyect.activities.RegisterActivity;
 import com.example.movileappsproyect.model.UserModel;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,8 +44,8 @@ public class RegisterThread implements Runnable {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");
-            String jsonData = "{\"usuario\": \"" + userModel.getEmail() + "\", \"contraseña\": \""
-                    + userModel.getPassword() + "\"}";
+            Gson gson = new Gson();
+            String jsonData = gson.toJson(userModel);
 
             //enviar peticion
             OutputStream os = connection.getOutputStream();

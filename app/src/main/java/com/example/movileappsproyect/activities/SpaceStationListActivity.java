@@ -32,10 +32,7 @@ public class SpaceStationListActivity extends AppCompatActivity {
 
         for (SpaceStationModel station: results) {
             station.setbImage(FileManage.getImg(station.getStoreUrl(),this));
-            Log.i("estacion  " + station.getNombre(), station.getNombre()+".jpeg");
         }
-
-        Log.e("aquiiiii",String.valueOf(new File(results.get(0).getNombre()+".jpeg").exists()));
 
         ListView lv = findViewById(R.id.space_station_list);
         SpaceStationListAdapter adapter = new SpaceStationListAdapter(this, results);
@@ -45,7 +42,6 @@ public class SpaceStationListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String elem = results.get(i).getNombre();
                 Intent intent = new Intent(SpaceStationListActivity.this, SpaceStationActivity.class);
-                Log.i("elemento", elem);
                 intent.putExtra("elementoSeleccionado", elem);
                 startActivity(intent);
             }

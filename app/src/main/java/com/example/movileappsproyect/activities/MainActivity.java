@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
         //arrancar thread
         if(!isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)) startBatchUpdateJob();
 
-        Log.i("inicio app",String.valueOf(isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)));
-
         if(!isJobServiceRunning(NOTIFICATION_ID)) {
             createNotificationChannel();
             startNotificationJob();

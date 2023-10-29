@@ -35,7 +35,7 @@ public class FileManage {
         File file = new File(fileName);
         Bitmap myBitmap = null;
 
-        if(file.exists()){Log.e("aqui",fileName);
+        if(file.exists()){
             myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         } else {
             Log.e("FileManage.getImg","No existe imagen");

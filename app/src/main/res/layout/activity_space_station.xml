@@ -21,7 +21,7 @@
         <Button
             android:id="@+id/space_station_share"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="107dp"
+            android:layout_width="139dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/station_btn_share" />
@@ -38,7 +38,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="454dp"
+        android:layout_height="402dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,25 +51,31 @@
             android:id="@+id/station_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/station_name" />
+            android:text="@string/station_name"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/station_founded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/station_founded" />
+            android:text="@string/station_founded"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/station_deorbited"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/station_deorbited" />
+            android:text="@string/station_deorbited"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/station_orbit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/station_orbit" />
+            android:text="@string/station_orbit"
+            android:textAlignment="center" />
 
         <ScrollView
             android:id="@+id/station_scroll"
@@ -93,11 +99,10 @@
 
     <ImageView
         android:id="@+id/station_img"
-        android:layout_width="214dp"
-        android:layout_height="214dp"
+        android:layout_width="277dp"
+        android:layout_height="277dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_share"
         app:layout_constraintVertical_bias="1.0"

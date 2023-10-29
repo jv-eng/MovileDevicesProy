@@ -38,8 +38,6 @@ public class LocationThread implements Runnable {
 
     @Override
     public void run() {
-        Log.e("th long", String.valueOf(device_long));
-        Log.e("th lat", String.valueOf(device_lat));
 
         ((Activity)ctx).runOnUiThread(new Runnable() {
             @Override
@@ -68,7 +66,6 @@ public class LocationThread implements Runnable {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
         ISSLocationModel iss_pos = gson.fromJson(jsonIssPos, ISSLocationModel.class);
-        Log.i("location iss",iss_pos.getLatitude());
 
         String jsonDevicePos = NetworkUtil.getHTTPText(LOCALIZATION_URL
                 + device_long + "%2C" + device_lat + "&language=es&format=json");
@@ -93,7 +90,6 @@ public class LocationThread implements Runnable {
                 ((LocationActivity)ctx).prepareUIAfterDownload();
             }
         });
-        Log.i(this.toString(), "descarga de localizacion fin");
     }
 
     //calcualr distancia en kilometros

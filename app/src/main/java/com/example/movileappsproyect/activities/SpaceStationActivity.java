@@ -28,13 +28,11 @@ public class SpaceStationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_space_station);
         String elem = getIntent().getStringExtra("elementoSeleccionado");
-        Log.i("elemento seleccionado", elem);
 
         SpaceStationHelper helper = new SpaceStationHelper(this);
         SpaceStationDB db = new SpaceStationDB(helper);
         SpaceStationModel result = db.getStation(elem);
 
-        Log.i("imagen almacenada",result.getStoreUrl());
         result.setbImage(FileManage.getImg(result.getStoreUrl(), this));
         showStation(result);
 
@@ -74,11 +72,11 @@ public class SpaceStationActivity extends AppCompatActivity {
     }
 
     public void showStation(SpaceStationModel result) {
-        ((TextView)findViewById(R.id.station_title)).append("   "+ result.getNombre());
-        ((TextView)findViewById(R.id.station_deorbited)).append("   "+ result.getDeorbited());
-        ((TextView)findViewById(R.id.station_description)).append("   "+ result.getDescription());
-        ((TextView)findViewById(R.id.station_orbit)).append("   "+ result.getOrbit());
-        ((TextView)findViewById(R.id.station_founded)).append("   "+ result.getFounded());
+        ((TextView)findViewById(R.id.station_title)).setText(result.getNombre());
+        ((TextView)findViewById(R.id.station_deorbited)).append(":   "+ result.getDeorbited());
+        ((TextView)findViewById(R.id.station_description)).setText(result.getDescription());
+        ((TextView)findViewById(R.id.station_orbit)).append(":   "+ result.getOrbit());
+        ((TextView)findViewById(R.id.station_founded)).append(":   "+ result.getFounded());
         ((ImageView)findViewById(R.id.station_img)).setImageBitmap(result.getbImage());
     }
 }
