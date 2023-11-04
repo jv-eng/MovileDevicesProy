@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,12 +22,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private static final int MY_PERMISSIONS_REQUEST_Notification = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         askForPermissionsGrant();
+        askForPermissionsGrantNotification();
 
         setBtnLogic();
     }
@@ -74,10 +79,27 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
 
-    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    public void askForPermissionsGrantNotification() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Activate notifications")
+                    .setMessage("Turn on notifications if you want to know when the next image is available.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(MenuActivity.this,
+                                    new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                                    MY_PERMISSIONS_REQUEST_Notification);
+                        }
+                    });
+            builder.create().show();
+            Log.i(this.getLocalClassName(), "permisos obtenidos");
+        }
+    }
     public void askForPermissionsGrant() {
         // Here, thisActivity is the current activity
 

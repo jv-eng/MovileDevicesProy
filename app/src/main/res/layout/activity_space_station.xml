@@ -37,20 +37,20 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="402dp"
+        android:layout_width="375dp"
+        android:layout_height="347dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_share"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.95">
 
         <TextView
             android:id="@+id/station_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46sp"
             android:text="@string/station_name"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -59,28 +59,28 @@
         <TextView
             android:id="@+id/station_founded"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36sp"
             android:text="@string/station_founded"
             android:textAlignment="center" />
 
         <TextView
             android:id="@+id/station_deorbited"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:text="@string/station_deorbited"
             android:textAlignment="center" />
 
         <TextView
             android:id="@+id/station_orbit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33sp"
             android:text="@string/station_orbit"
             android:textAlignment="center" />
 
         <ScrollView
             android:id="@+id/station_scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="183sp">
 
             <LinearLayout
                 android:id="@+id/station_scroll_layout"
@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/station_description"
-                    android:layout_width="match_parent"
+                    android:layout_width="375sp"
                     android:layout_height="wrap_content"
                     android:text="@string/station_description" />
             </LinearLayout>
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_share"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

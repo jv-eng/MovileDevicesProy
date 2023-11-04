@@ -15,6 +15,7 @@ import com.example.movileappsproyect.util.storage.SpaceStationHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +34,9 @@ public class SpaceStationListDownloadThread implements Runnable {
         SpaceStationRequestModel stations_req;
         String url = baseUrl;
 
-        if (MainActivity.firstJob) {
+        File file = new File("/data/user/0/com.example.movileappsproyect/files/InternationalSpaceStation.jpeg");
+
+        if (!file.exists()) {
             Log.i(SpaceStationListDownloadThread.class.getName(),"descargando estaciones");
             do {
                 //task
@@ -60,7 +63,7 @@ public class SpaceStationListDownloadThread implements Runnable {
                 if (stations_req.getNext() != null) url = stations_req.getNext();
             } while (stations_req.getNext() != null);
             PreferencesManage.storeStations(ctx);
-        }
+        } else {Log.i("Descarga de estaciones","Las estaciones ya están descargadas");}
 
         //store data
         SpaceStationHelper helper = new SpaceStationHelper(ctx);

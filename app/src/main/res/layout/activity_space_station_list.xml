@@ -8,8 +8,8 @@
 
     <ListView
         android:id="@+id/space_station_list"
-        android:layout_width="409dp"
-        android:layout_height="653dp"
+        android:layout_width="376dp"
+        android:layout_height="655dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -16,6 +16,7 @@ import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.model.DayPictureModel;
 import com.example.movileappsproyect.util.storage.FileManage;
 import com.example.movileappsproyect.util.threads.DayPictureDownloadThread;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PictureDayActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class PictureDayActivity extends AppCompatActivity {
         th.start();
 
         //lógica de botones
-        Button btn_share_img = findViewById(R.id.pict_day_share_img);
+        FloatingActionButton btn_share_img = findViewById(R.id.pict_day_share_img);
         btn_share_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,20 +48,6 @@ public class PictureDayActivity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 PictureDayActivity.this.startActivity(Intent.createChooser(intent, "Compartir imagen"));
-            }
-        });
-
-        Button b = findViewById(R.id.pict_day_share);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, results.getUrl());
-                sendIntent.setType("text/plain");
-
-                Intent shareIntent = Intent.createChooser(sendIntent, null);
-                startActivity(shareIntent);
             }
         });
     }
@@ -81,7 +68,7 @@ public class PictureDayActivity extends AppCompatActivity {
         ImageView tv = findViewById(R.id.picture_day_img);
         tv.setImageBitmap(results.getbImage());
         ((TextView)findViewById(R.id.pict_day_title)).setText(results.getTitle());
-        ((TextView)findViewById(R.id.pict_day_date)).setText(results.getDate());
+        ((TextView)findViewById(R.id.pict_day_date)).append(": " + results.getDate());
         ((TextView)findViewById(R.id.pict_day_explanation)).setText(results.getExplanation());
     }
 }

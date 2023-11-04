@@ -19,20 +19,20 @@
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="352dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.991">
+        app:layout_constraintVertical_bias="0.992">
 
         <LinearLayout
             android:id="@+id/location_device"
             android:layout_width="match_parent"
-            android:layout_height="94dp"
+            android:layout_height="111dp"
             android:orientation="vertical">
 
             <TextView
@@ -66,7 +66,7 @@
         <LinearLayout
             android:id="@+id/location_iss"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="103dp"
             android:orientation="vertical">
 
             <TextView
@@ -99,7 +99,7 @@
         <LinearLayout
             android:id="@+id/location_distance"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="142dp"
             android:orientation="vertical">
 
             <TextView

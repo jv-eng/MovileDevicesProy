@@ -6,57 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".activities.SpaceStationListActivity">
 
-    <Button
-        android:id="@+id/pict_day_share"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pict_day_share"
+    <ImageView
+        android:id="@+id/picture_day_img"
+        android:layout_width="match_parent"
+        android:layout_height="324dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/picture_day_img"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/pict_day_title"
-        android:layout_width="0dp"
-        android:layout_height="90dp"
+        android:layout_width="408dp"
+        android:layout_height="76dp"
         android:divider="@color/black"
         android:dividerHeight="1dp"
         android:text="@string/pict_title"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.512" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="247dp"
+        android:layout_width="359sp"
+        android:layout_height="246sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.997">
+        app:layout_constraintVertical_bias="0.941">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,18 +58,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/pict_day_share_img"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pict_day_share_img"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TextView
         android:id="@+id/pict_day_date"
         android:layout_width="match_parent"
@@ -93,8 +68,23 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pict_day_title"
-        app:layout_constraintVertical_bias="0.269"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.269" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pict_day_share_img"
+        android:layout_width="57dp"
+        android:layout_height="51dp"
+        android:clickable="true"
+        android:contentDescription="@string/pict_day_share_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@android:drawable/ic_menu_share" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

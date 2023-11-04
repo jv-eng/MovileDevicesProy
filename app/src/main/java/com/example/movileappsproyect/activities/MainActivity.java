@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+import android.app.Notification;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -23,6 +22,7 @@ import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.jobs.NotificationService;
 import com.example.movileappsproyect.jobs.SpaceStationDownloadService;
 import com.example.movileappsproyect.util.NetworkUtil;
+import com.example.movileappsproyect.util.NotificationHandler;
 import com.example.movileappsproyect.util.storage.PreferencesManage;
 import com.example.movileappsproyect.util.storage.SpaceStationHelper;
 
@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
     private static boolean geoPermision = false;
     //add flag primera insercion
     public static boolean firstJob = true;
+    private static NotificationHandler handler;
+
+    public static NotificationHandler getHandler() {
+        return handler;
+    }
 
     public static boolean isGeoPermision() {
         return geoPermision;
@@ -53,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
         else Log.e("ERRRRORR","no se descargan");
 
         //comprobar notificaciones
+        handler = new NotificationHandler(this);
         if(!isJobServiceRunning(NOTIFICATION_ID)) {
-            createNotificationChannel();
+            launchNotification();
             startNotificationJob();
         } else Log.e("ERRRRORR","no hay notificaciones");
 
@@ -82,9 +88,8 @@ public class MainActivity extends AppCompatActivity {
         ComponentName comName = new ComponentName(this, NotificationService.class);
         JobInfo info = new JobInfo.Builder(NOTIFICATION_ID, comName)
                 .setPersisted(true)
-                .setPeriodic(15 * 60 * 1000)
+                .setPeriodic(24 * 60 * 60 * 1000)
                 .build();
-
         JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         scheduler.schedule(info);
     }
@@ -101,14 +106,11 @@ public class MainActivity extends AppCompatActivity {
         scheduler.schedule(info);
     }
 
-    private void createNotificationChannel(){
-        CharSequence name = "notificationChannel";
-        String description = "Main notification channel";
-
-        NotificationChannel channel = new NotificationChannel("notification", name, NotificationManager.IMPORTANCE_HIGH);
-        channel.setDescription(description);
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
+    private void launchNotification(){
+        //Toast.makeText(this, "Starting notification", Toast.LENGTH_SHORT).show();
+        Notification.Builder nBuilder = handler.createNotificationChannels(getString(R.string.notification_title), getString(R.string.notification_msg));
+        handler.getManager().notify(0,nBuilder.build());
+        handler.publishGroup();
     }
 
     @Override
