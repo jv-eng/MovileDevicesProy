@@ -7,6 +7,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import com.example.movileappsproyect.R;
@@ -49,6 +52,9 @@ public class NotificationHandler extends ContextWrapper {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1,
                 intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
+        Notification.Action action = new Notification.Action.Builder(Icon.createWithResource(this, R.drawable.ic_launcher_background), "OPEN", pendingIntent).build();
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
         //configurar la notificaicón
         return new Notification.Builder(getApplicationContext(), CHANNEL_ID)
                 .setContentTitle(title)
@@ -56,7 +62,10 @@ public class NotificationHandler extends ContextWrapper {
                 .setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setGroup(GROUP_NAME)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setActions(action)
+                .setLargeIcon(bitmap)
+                .setStyle(new Notification.BigPictureStyle().bigPicture(bitmap).bigLargeIcon((Bitmap) null));
     }
 
     public void publishGroup() {

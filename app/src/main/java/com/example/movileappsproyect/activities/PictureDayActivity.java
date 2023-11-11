@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -65,8 +67,13 @@ public class PictureDayActivity extends AppCompatActivity {
 
     public void showDownloadResults(DayPictureModel results) {
         this.results = results;
+
         ImageView tv = findViewById(R.id.picture_day_img);
-        tv.setImageBitmap(results.getbImage());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap bitmap = Bitmap.createBitmap(results.getbImage(), 0, 0, tv.getWidth(), tv.getHeight());
+        tv.setImageBitmap(bitmap);
+
         ((TextView)findViewById(R.id.pict_day_title)).setText(results.getTitle());
         ((TextView)findViewById(R.id.pict_day_date)).append(": " + results.getDate());
         ((TextView)findViewById(R.id.pict_day_explanation)).setText(results.getExplanation());

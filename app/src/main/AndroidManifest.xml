@@ -59,7 +59,8 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".jobs.NotificationService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:stopWithTask="false"/>
     </application>
 
 </manifest>
