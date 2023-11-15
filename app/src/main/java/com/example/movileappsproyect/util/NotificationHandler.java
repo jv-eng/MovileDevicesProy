@@ -46,6 +46,7 @@ public class NotificationHandler extends ContextWrapper {
         Intent intent = new Intent(this, PictureDayActivity.class);
         intent.putExtra("titulo", title);
         intent.putExtra("msg",msg);
+        intent.putExtra("Notificacion",true);
         //configure flags
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //creariamos el pending intent

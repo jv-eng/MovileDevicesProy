@@ -35,6 +35,19 @@ public class PictureDayActivity extends AppCompatActivity {
         th.start();
 
         //lógica de botones
+        Button btn = findViewById(R.id.pict_day_btn_back);
+        boolean flag = getIntent().getBooleanExtra("Notificacion",false);
+        if (flag) {
+            btn.setVisibility(View.VISIBLE);
+        }
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(PictureDayActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
         FloatingActionButton btn_share_img = findViewById(R.id.pict_day_share_img);
         btn_share_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +82,7 @@ public class PictureDayActivity extends AppCompatActivity {
         this.results = results;
 
         ImageView tv = findViewById(R.id.picture_day_img);
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
-        Bitmap bitmap = Bitmap.createBitmap(results.getbImage(), 0, 0, tv.getWidth(), tv.getHeight());
-        tv.setImageBitmap(bitmap);
+        tv.setImageBitmap(results.getbImage());
 
         ((TextView)findViewById(R.id.pict_day_title)).setText(results.getTitle());
         ((TextView)findViewById(R.id.pict_day_date)).append(": " + results.getDate());
