@@ -40,6 +40,7 @@
     <string name="pict_title">Título</string>
     <string name="pict_day_share_img">Compartir imagen</string>
     <string name="pict_day_share">Compartir</string>
+    <string name="pict_day_btn">Menu</string>
     <!--Localizacion-->
     <string name="location_device_msg">Tu posición</string>
     <string name="location_device_country">País: </string>
