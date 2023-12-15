@@ -75,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //si está activo, guardar
         if (save_user_btn.isChecked()) {
-            PreferencesManage.storeUser(this, ((TextView)findViewById(R.id.login_et_username)).getText().toString());
+            PreferencesManage.storeUser(this, ((TextView)findViewById(R.id.login_et_username)).getText().toString(),
+                    ((TextView)findViewById(R.id.login_et_password)).getText().toString());
         }
 
         Intent i = new Intent(LoginActivity.this, MenuActivity.class);

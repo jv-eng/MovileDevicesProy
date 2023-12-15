@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 public class PreferencesManage {
 
     private final static String PREFERENCES_FILE_NAME = "prefs", PREFERENCE_ATTR_1_NAME = "user_name",
-                                PREFERENCES_STATIONS = "stations_downloaded";
+            PREFERENCE_ATTR_2_PASS = "user_pass";
 
     public static boolean userExists(Context ctx) {
         SharedPreferences pref = ctx.getSharedPreferences(PREFERENCES_FILE_NAME, MODE_PRIVATE);
@@ -17,10 +17,11 @@ public class PreferencesManage {
         return (!username.equals(""));
     }
 
-    public static void storeUser(Context ctx, String name) {
+    public static void storeUser(Context ctx, String name, String pass) {
         SharedPreferences pref = ctx.getSharedPreferences(PREFERENCES_FILE_NAME, MODE_PRIVATE);
         SharedPreferences.Editor ed = pref.edit();
         ed.putString(PREFERENCE_ATTR_1_NAME, name);
+        ed.putString(PREFERENCE_ATTR_2_PASS, String.valueOf(pass.hashCode()));
         ed.apply();
     }
 
