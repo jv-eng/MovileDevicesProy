@@ -25,6 +25,7 @@ import com.example.movileappsproyect.util.NetworkUtil;
 import com.example.movileappsproyect.util.NotificationHandler;
 import com.example.movileappsproyect.util.storage.PreferencesManage;
 import com.example.movileappsproyect.util.storage.SpaceStationHelper;
+import com.google.firebase.FirebaseApp;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         checkDB();
+        FirebaseApp.initializeApp(this);
 
         //comprobar job de descarga de estaciones
         if(!isJobServiceRunning(SPACE_STATION_DOWNLOAD_ID)) startBatchUpdateJob();

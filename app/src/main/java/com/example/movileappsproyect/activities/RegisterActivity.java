@@ -46,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 //lanzar thread
+                //tener en cuenta que es un API
                 UserModel user = new UserModel(txt_user.getText().toString(), txt_pass_1.getText().toString());
                 Thread th = new Thread(new RegisterThread(RegisterActivity.this, user));
                 th.start();
@@ -64,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.dismiss();
     }
 
-    public void checkResults(String res) {
+    public void checkResults() {
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);
     }

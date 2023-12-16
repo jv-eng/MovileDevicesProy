@@ -15,6 +15,7 @@ import com.example.movileappsproyect.model.UserModel;
 import com.example.movileappsproyect.util.storage.PreferencesManage;
 import com.example.movileappsproyect.util.threads.LoginThread;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.firebase.FirebaseApp;
 
 import java.util.regex.Pattern;
 
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 //lanzar thread
+                //tener en cuenta que es un API
                 UserModel user = new UserModel(txt_user.getText().toString(), txt_pass.getText().toString());
                 Thread th = new Thread(new LoginThread(LoginActivity.this, user));
                 th.start();
@@ -70,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.dismiss();
     }
 
-    public void checkResults(String res) {
+    public void checkResults() {
         SwitchMaterial save_user_btn = findViewById(R.id.login_save_usr);
 
         //si está activo, guardar

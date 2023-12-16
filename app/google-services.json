@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "786733092236",
+    "project_id": "com.example.movileappsproject",
+    "storage_bucket": "movileappsproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786733092236:android:41f18a421bbe394e97daa9",
+        "android_client_info": {
+          "package_name": "com.example.movileappsproyect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBZ5_Y9T1Cs3nyJ3gajNL1CFpqT72fHkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

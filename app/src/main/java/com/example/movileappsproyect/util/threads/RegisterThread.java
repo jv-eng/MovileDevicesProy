@@ -3,20 +3,13 @@ package com.example.movileappsproyect.util.threads;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.activities.RegisterActivity;
 import com.example.movileappsproyect.model.UserModel;
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterThread implements Runnable {
     private final String REGISTER_URL = "https://postman-echo.com/post";
@@ -36,48 +29,35 @@ public class RegisterThread implements Runnable {
         });
 
         //tarea
-        URL url = null;
-        try {
-            //configurar
-            url = new URL(REGISTER_URL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "application/json");
-            Gson gson = new Gson();
-            String jsonData = gson.toJson(userModel);
+        String user = this.userModel.getEmail();
+        String pass = this.userModel.getPassword();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-            //enviar peticion
-            OutputStream os = connection.getOutputStream();
-            byte[] input = jsonData.getBytes(StandardCharsets.UTF_8);
-            os.write(input, 0, input.length);
+        firebaseAuth.createUserWithEmailAndPassword(user, pass)
+                .addOnCompleteListener(task -> {
 
-            // Leer la respuesta del servidor
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
-
-            //desconectar
-            connection.disconnect();
-            is.close();
-            os.close();
-
-            //tratar resultado
-            ((Activity)ctx).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ((RegisterActivity)ctx).checkResults(response.toString());
-                }
-            });
-        } catch (MalformedURLException e) {
-            Log.e("RegisterThread","Error al crear la URL");
-        } catch (IOException e) {
-            Log.e("RegisterThread","Error al realizar la petición");
-        }
+                    if (task.isSuccessful()) {
+                        // Registro exitoso
+                        Log.e("hola","hola");
+                        FirebaseUser user_firebase = firebaseAuth.getCurrentUser();
+                        if (user_firebase != null) {
+                            Toast.makeText(this.ctx, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                            ((Activity)ctx).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((RegisterActivity)ctx).checkResults();
+                                }
+                            });
+                        }
+                    } else {
+                        // Manejar errores en el registro
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            // Mostrar mensaje de error o realizar acciones correspondientes
+                            Toast.makeText(this.ctx, R.string.register_msg, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
         //fin
         ((Activity)ctx).runOnUiThread(new Runnable() {

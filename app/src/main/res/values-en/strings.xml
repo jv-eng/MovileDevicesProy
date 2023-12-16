@@ -15,12 +15,14 @@
     <string name="login">Login</string>
     <string name="btn_logut">Logout</string>
     <string name="register">Register</string>
+    <string name="login_msg">User and password are not valid.</string>
     <!--Registro-->
     <string name="register_txt">Welcome!</string>
     <string name="register_mail">Email</string>
     <string name="register_pass_1">Password</string>
     <string name="register_pass_2">Repeat Password</string>
     <string name="register_button">Register</string>
+    <string name="register_msg">The password must have 6 characters minimum.</string>
     <!--Listado estaciones-->
     <string name="cardImg">Image</string>
     <string name="cardName">Name</string>

@@ -2,22 +2,13 @@ package com.example.movileappsproyect.util.threads;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+import android.widget.Toast;
 
+import com.example.movileappsproyect.R;
 import com.example.movileappsproyect.activities.LoginActivity;
 import com.example.movileappsproyect.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginThread implements Runnable {
     private final String LOGIN_URL = "https://postman-echo.com/post";
@@ -40,50 +31,34 @@ public class LoginThread implements Runnable {
         });
 
         //tarea
-        URL url = null;
-        try {
-            //configurar
-            url = new URL(LOGIN_URL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "application/json");
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String email = this.userModel.getEmail();
+        String password = this.userModel.getPassword();
 
-            Gson gson = new Gson();
-            String jsonData = gson.toJson(userModel);
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Inicio de sesión exitoso
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        if (user != null) {
+                            // El usuario ha iniciado sesión exitosamente
+                            ((Activity)ctx).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((LoginActivity)ctx).checkResults();
+                                }
+                            });
+                        }
+                    } else {
+                        // Manejar errores en el inicio de sesión
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            // Mostrar mensaje de error o realizar acciones correspondientes
+                            Toast.makeText(this.ctx, R.string.login_msg, Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
 
-
-            //enviar peticion
-            OutputStream os = connection.getOutputStream();
-            byte[] input = jsonData.getBytes(StandardCharsets.UTF_8);
-            os.write(input, 0, input.length);
-
-            // Leer la respuesta del servidor
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
-
-            //desconectar
-            connection.disconnect();
-            is.close();
-            os.close();
-
-            //tratar resultado
-            ((Activity)ctx).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ((LoginActivity)ctx).checkResults(response.toString());
-                }
-            });
-        } catch (MalformedURLException e) {
-            Log.e("LoginThread","Error al crear la URL");
-        } catch (IOException e) {
-            Log.e("LoginThread","Error al realizar la petición");
-        }
 
         //fin
         ((Activity)ctx).runOnUiThread(new Runnable() {
