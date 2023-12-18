@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         ComponentName comName = new ComponentName(this, SpaceStationDownloadService.class);
         JobInfo info = new JobInfo.Builder(SPACE_STATION_DOWNLOAD_ID, comName)
                 .setPersisted(true)
-                .setPeriodic(15 * 60 * 1000)
+                .setPeriodic(12 * 60 * 60 * 1000)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .build();
 
