@@ -36,7 +36,7 @@ public class SpaceStationListDownloadThread implements Runnable {
 
         File file = new File("/data/user/0/com.example.movileappsproyect/files/InternationalSpaceStation.jpeg");
 
-        if (!file.exists()) {
+        //if (!file.exists()) {
             Log.i(SpaceStationListDownloadThread.class.getName(),"descargando estaciones");
             do {
                 //task
@@ -53,8 +53,10 @@ public class SpaceStationListDownloadThread implements Runnable {
                     Bitmap b = NetworkUtil.readImageHTTPGet(station.getImage());
                     station.setbImage(b);
                     //guardar imagen
-                    String path = FileManage.saveImg(station.getNombre() + ".jpeg", ctx, b);
-                    station.setStoreUrl(path);
+                    if (!file.exists()) {
+                        String path = FileManage.saveImg(station.getNombre() + ".jpeg", ctx, b);
+                        station.setStoreUrl(path);
+                    }
                     //check deorbited
                     if (station.getDeorbited() == null) station.setDeorbited("Still in orbit");
                     //store object
@@ -63,11 +65,15 @@ public class SpaceStationListDownloadThread implements Runnable {
                 if (stations_req.getNext() != null) url = stations_req.getNext();
             } while (stations_req.getNext() != null);
             PreferencesManage.storeStations(ctx);
-        } else {Log.i("Descarga de estaciones","Las estaciones ya están descargadas");}
+        //} else {Log.i("Descarga de estaciones","Las estaciones ya están descargadas");}
 
         //store data
         SpaceStationHelper helper = new SpaceStationHelper(ctx);
         SpaceStationDB db = new SpaceStationDB(helper);
-        db.save(stations_res);
+        if (!file.exists()) {
+            db.save(stations_res);
+        } else {
+            db.updateStations(stations_res);
+        }
     }
 }

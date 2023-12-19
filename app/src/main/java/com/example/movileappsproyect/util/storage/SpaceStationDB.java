@@ -1,5 +1,6 @@
 package com.example.movileappsproyect.util.storage;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -86,5 +87,19 @@ public class SpaceStationDB {
             }
         }
         if (flag) MainActivity.firstJob = false;
+    }
+
+    public void updateStations(List<SpaceStationModel> stations) {
+        SQLiteDatabase db = helper.getWritableDatabase();
+        for (SpaceStationModel station: stations) {
+            ContentValues valores = new ContentValues();
+            valores.put("deorbited", station.getDeorbited());
+            valores.put("description", station.getDescription());
+            valores.put("orbit", station.getOrbit());
+
+            // Actualizar registros donde el nombre sea igual a nombreBuscado
+            db.update("station", valores, "name = ?", new String[]{station.getNombre()});
+        }
+        db.close();
     }
 }
